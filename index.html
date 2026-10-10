@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroCrea - Plataforma de Educación Inclusiva</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        secondary: {
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        },
+                        ods: '#c5192d'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .canvas-card {
+            transition: all 0.25s ease-in-out;
+        }
+        .canvas-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased bg-slate-50 min-h-screen flex flex-col">
+
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="#inicio" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center text-white shadow-md shadow-indigo-200">
+                        <i class="fa-solid fa-brain text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-2xl tracking-tight text-slate-900">Neuro<span class="text-primary-600">Crea</span></span>
+                        <span class="hidden sm:inline-block text-xs text-slate-500 font-medium ml-2 border-l border-slate-300 pl-2">ODS 4 • Educación Inclusiva</span>
+                    </div>
+                </a>
+
+                <div class="hidden lg:flex items-center space-x-6 text-sm font-semibold text-slate-600">
+                    <a href="#problema" class="hover:text-primary-600 transition">El Problema</a>
+                    <a href="#solucion" class="hover:text-primary-600 transition">La Solución</a>
+                    <a href="#diagnostico" class="hover:text-primary-600 transition">Diagnóstico</a>
+                    <a href="#adaptacion" class="hover:text-primary-600 transition">Adaptación Hogar/Aula</a>
+                    <a href="#ods4" class="hover:text-primary-600 transition">ODS 4</a>
+                    <a href="#canvas" class="hover:text-primary-600 transition">Modelo Canvas</a>
+                </div>
+
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="#diagnostico" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full font-semibold text-sm transition shadow-lg shadow-indigo-200">
+                        Iniciar Diagnóstico
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-600 hover:text-slate-900 p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#problema" class="block py-2 text-slate-700 font-medium border-b border-slate-100">El Problema</a>
+            <a href="#solucion" class="block py-2 text-slate-700 font-medium border-b border-slate-100">La Solución</a>
+            <a href="#diagnostico" class="block py-2 text-slate-700 font-medium border-b border-slate-100">Diagnóstico Preliminar</a>
+            <a href="#adaptacion" class="block py-2 text-slate-700 font-medium border-b border-slate-100">Adaptación Hogar y Aula</a>
+            <a href="#ods4" class="block py-2 text-slate-700 font-medium border-b border-slate-100">ODS 4 - Impacto</a>
+            <a href="#canvas" class="block py-2 text-slate-700 font-medium border-b border-slate-100">Plan de Negocios Canvas</a>
+            <a href="#equipo" class="block py-2 text-slate-700 font-medium">Equipo de Desarrollo</a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="pt-32 pb-20 lg:pt-40 lg:pb-28 relative overflow-hidden bg-gradient-to-b from-indigo-50/70 via-white to-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-100 text-primary-700 text-xs sm:text-sm font-bold mb-6 border border-indigo-200">
+                    <i class="fa-solid fa-users text-amber-500"></i>
+                    <span>Equipo 3: Diana • Ángel • Carlos • Ernesto • Alejandra</span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                    Detección Oportuna y Acompañamiento Integral para <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-500">Niños Neurodivergentes</span>
+                </h1>
+                
+                <p class="mt-6 text-lg sm:text-xl text-slate-600 font-normal leading-relaxed max-w-3xl mx-auto">
+                    Una plataforma técnica y pedagógica que conecta a <strong>familias, docentes de educación primaria y especialistas</strong> para identificar necesidades neurodivergentes de forma temprana y aplicar adecuaciones efectivas en casa y en el aula.
+                </p>
+
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#diagnostico" class="w-full sm:w-auto bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-xl font-bold text-base transition shadow-xl shadow-indigo-200 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-clipboard-check text-lg"></i>
+                        Cuestionario de Detección
+                    </a>
+                    <a href="#canvas" class="w-full sm:w-auto bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 px-8 py-4 rounded-xl font-bold text-base transition shadow-sm flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-briefcase text-slate-500"></i>
+                        Ver Plan de Negocios
+                    </a>
+                </div>
+
+                <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-left pt-8 border-t border-slate-200/80">
+                    <div class="p-4 bg-white/80 rounded-xl border border-slate-200">
+                        <p class="text-xs text-slate-500 font-semibold uppercase">Enfoque</p>
+                        <p class="text-sm font-bold text-slate-900 mt-1">Educación Primaria</p>
+                    </div>
+                    <div class="p-4 bg-white/80 rounded-xl border border-slate-200">
+                        <p class="text-xs text-slate-500 font-semibold uppercase">Objetivo ONU</p>
+                        <p class="text-sm font-bold text-slate-900 mt-1">ODS 4: Calidad</p>
+                    </div>
+                    <div class="p-4 bg-white/80 rounded-xl border border-slate-200">
+                        <p class="text-xs text-slate-500 font-semibold uppercase">Red de Apoyo</p>
+                        <p class="text-sm font-bold text-slate-900 mt-1">USAER + DIF + UdeG</p>
+                    </div>
+                    <div class="p-4 bg-white/80 rounded-xl border border-slate-200">
+                        <p class="text-xs text-slate-500 font-semibold uppercase">Herramienta</p>
+                        <p class="text-sm font-bold text-slate-900 mt-1">Screener + Adaptaciones</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problema" class="py-20 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7">
+                    <div class="inline-flex items-center gap-2 text-primary-600 font-bold text-xs uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Diagnóstico Contextual
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        El Problema en la Educación Primaria Estandarizada
+                    </h2>
+                    <p class="mt-4 text-slate-600 text-base leading-relaxed">
+                        Los alumnos de educación primaria que presentan condiciones neurodivergentes (como TDAH, Trastorno del Espectro Autista, Dislexia, Discalculia o Altas Capacidades) sufren de manera recurrente la falta de un sistema adaptado a sus estilos de procesamiento cognitivo.
+                    </p>
+
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                            <div class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">Diagnósticos Tardíos u Omitidos</h4>
+                                <p class="text-sm text-slate-600 mt-0.5">Muchas necesidades son confundidas con "falta de disciplina" o "desinterés", retrasando años la atención profesional oportuna.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">Desconexión Escuela - Hogar</h4>
+                                <p class="text-sm text-slate-600 mt-0.5">Los padres carecen de pautas estructuradas para adecuar el espacio de estudio en casa, generando tensión familiar y desgaste emocional.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">Docentes sin Herramientas de Rápida Aplicación</h4>
+                                <p class="text-sm text-slate-600 mt-0.5">Los maestros de aulas regulares atienden grupos numerosos y no cuentan con formatos de adecuación curricular ágiles y validados.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl text-white">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                            <i class="fa-solid fa-chart-line text-secondary-500"></i> Impacto Estadístico
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div class="border-b border-slate-800 pb-4">
+                                <p class="text-3xl font-extrabold text-indigo-400">1 de cada 6</p>
+                                <p class="text-xs text-slate-300 mt-1">niños en edad escolar presenta una variación o rasgo neurodivergente en su proceso de aprendizaje.</p>
+                            </div>
+                            <div class="border-b border-slate-800 pb-4">
+                                <p class="text-3xl font-extrabold text-amber-400">+65%</p>
+                                <p class="text-xs text-slate-300 mt-1">de los profesores reportan no tener capacitación continua para adaptar evaluaciones y exámenes en el aula regular.</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-extrabold text-emerald-400">35%</p>
+                                <p class="text-xs text-slate-300 mt-1">de reducción en el riesgo de rezago escolar cuando se interviene tempranamente en el nivel primaria.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucion" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-primary-600 uppercase tracking-wider">Metodología Basada en Insumos</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+                    Arquitectura de la Solución NeuroCrea
+                </h2>
+                <p class="text-slate-600 mt-3 text-base">
+                    Flujo operativo integrado a partir del trabajo colaborativo entre especialistas, la red de voluntariado y la comunidad escolar.
+                </p>
+            </div>
+
+            <!-- Flowchart visual mapping -->
+            <div class="bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 shadow-md">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                    
+                    <!-- Step 1 -->
+                    <div class="flex flex-col items-center text-center p-6 rounded-xl bg-indigo-50/50 border border-indigo-100">
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-2xl font-bold mb-4 shadow-md">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">1. Co-Creación Técnica</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>Especialistas y Terapeutas</strong> realizan lluvia de ideas para consolidar una <strong>idea sólida</strong> de plataforma evaluativa y adaptativa.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col items-center text-center p-6 rounded-xl bg-sky-50/50 border border-sky-100">
+                        <div class="w-14 h-14 rounded-2xl bg-sky-600 text-white flex items-center justify-center text-2xl font-bold mb-4 shadow-md">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">2. Producción & Filtro</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>Voluntarios (Cámaras y Edición)</strong> generan guías audiovisuales. Todo el contenido pasa por un <strong>filtro riguroso de expertos</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex flex-col items-center text-center p-6 rounded-xl bg-emerald-50/50 border border-emerald-100">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-2xl font-bold mb-4 shadow-md">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">3. Implementación Web</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Plataforma digital para la aplicación de tests de detección y descarga directa de estrategias para padres y maestros.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Two columns: Familia & Escuela -->
+                <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-slate-200">
+                    <div class="p-6 rounded-xl bg-amber-50/60 border border-amber-200/80">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fa-solid fa-house-user text-amber-600 text-xl"></i>
+                            <h4 class="font-bold text-slate-900 text-base">Eje Familia</h4>
+                        </div>
+                        <ul class="text-xs text-slate-700 space-y-2 list-disc list-inside">
+                            <li>Realizar y compartir cuestionarios de diagnóstico preliminar.</li>
+                            <li>Acceder a tutoriales de adecuación del hogar (iluminación, ruido, rutinas).</li>
+                            <li>Dar seguimiento a la conducta y evolución del estudiante.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-6 rounded-xl bg-blue-50/60 border border-blue-200/80">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fa-solid fa-chalkboard-user text-blue-600 text-xl"></i>
+                            <h4 class="font-bold text-slate-900 text-base">Eje Escuela & Docentes</h4>
+                        </div>
+                        <ul class="text-xs text-slate-700 space-y-2 list-disc list-inside">
+                            <li>Recibir diagnósticos preliminares compartidos por los padres.</li>
+                            <li>Aplicar herramientas prácticas en la clase regular (pausas activas, apoyos visuales).</li>
+                            <li>Adecuación de aulas y coordinación con equipos USAER.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="diagnostico" class="py-20 bg-white border-t border-slate-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-primary-600 uppercase tracking-wider">Herramienta en Vivo</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-1">
+                    Cuestionario de Detección Oportuna (Screener)
+                </h2>
+                <p class="text-slate-600 mt-2 text-sm max-w-2xl mx-auto">
+                    Instrumento orientativo diseñado para que padres de familia o profesores identifiquen indicadores clave de necesidades específicas de aprendizaje.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 rounded-2xl p-6 sm:p-10 border border-slate-200 shadow-lg">
+                <form id="screener-form" onsubmit="event.preventDefault(); calcularDiagnostico();">
+                    
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Evaluador:</label>
+                        <select id="user-role-select" class="w-full sm:w-1/2 p-3 rounded-lg border border-slate-300 text-sm font-medium bg-white focus:ring-2 focus:ring-primary-500">
+                            <option value="padre">Padre / Tutor (Evaluación en el Hogar)</option>
+                            <option value="docente">Docente / Escuela (Evaluación en Aula)</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Q1 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200">
+                            <p class="font-semibold text-slate-900 text-sm mb-3">
+                                1. ¿El alumno muestra períodos de altísima concentración (hiperfoco) en temas de su interés, pero extrema dificultad para iniciar/concluir tareas estructuradas tradicionales?
+                            </p>
+                            <div class="flex items-center justify-between gap-2 text-xs text-slate-500 max-w-md">
+                                <span>Rara vez (1)</span>
+                                <input type="range" min="1" max="5" value="3" id="q1" class="w-full accent-primary-600">
+                                <span>Frecuentemente (5)</span>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200">
+                            <p class="font-semibold text-slate-900 text-sm mb-3">
+                                2. ¿Muestra hipersensibilidad o molestia evidente ante estímulos del entorno (ruidos fuertes, iluminación fluorescente, texturas de ropa o ambientes saturados)?
+                            </p>
+                            <div class="flex items-center justify-between gap-2 text-xs text-slate-500 max-w-md">
+                                <span>Rara vez (1)</span>
+                                <input type="range" min="1" max="5" value="3" id="q2" class="w-full accent-primary-600">
+                                <span>Frecuentemente (5)</span>
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200">
+                            <p class="font-semibold text-slate-900 text-sm mb-3">
+                                3. ¿Comprende y retiene significativamente mejor la información cuando se le presenta mediante apoyos visuales, mapas conceptuales o pasos secuenciados?
+                            </p>
+                            <div class="flex items-center justify-between gap-2 text-xs text-slate-500 max-w-md">
+                                <span>Rara vez (1)</span>
+                                <input type="range" min="1" max="5" value="3" id="q3" class="w-full accent-primary-600">
+                                <span>Frecuentemente (5)</span>
+                            </div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200">
+                            <p class="font-semibold text-slate-900 text-sm mb-3">
+                                4. ¿Requiere movimiento corporal (fidgeting, cambiar de postura, pausas motoras) para autorregular su atención durante sesiones de estudio prolongadas?
+                            </p>
+                            <div class="flex items-center justify-between gap-2 text-xs text-slate-500 max-w-md">
+                                <span>Rara vez (1)</span>
+                                <input type="range" min="1" max="5" value="3" id="q4" class="w-full accent-primary-600">
+                                <span>Frecuentemente (5)</span>
+                            </div>
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200">
+                            <p class="font-semibold text-slate-900 text-sm mb-3">
+                                5. ¿Experimenta fatiga mental rápida o frustración intensa al realizar lecturas extensas o copiar grandes volúmenes de texto del pizarrón?
+                            </p>
+                            <div class="flex items-center justify-between gap-2 text-xs text-slate-500 max-w-md">
+                                <span>Rara vez (1)</span>
+                                <input type="range" min="1" max="5" value="3" id="q5" class="w-full accent-primary-600">
+                                <span>Frecuentemente (5)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3.5 rounded-xl font-bold text-sm transition shadow-lg shadow-indigo-200">
+                            Generar Diagnóstico Preliminar
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Output Display Container -->
+                <div id="diag-results" class="hidden mt-10 p-6 bg-white rounded-xl border border-indigo-200 shadow-sm">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-4">
+                        <h4 class="font-bold text-slate-900 text-lg">Resultado de la Evaluación</h4>
+                        <span id="score-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">
+                            Puntaje: --/25
+                        </span>
+                    </div>
+
+                    <div id="result-text" class="text-sm text-slate-700 space-y-3">
+                        <!-- Filled dynamically by JavaScript -->
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex flex-wrap gap-3">
+                        <a href="#adaptacion" class="bg-slate-900 text-white text-xs font-semibold px-4 py-2.5 rounded-lg hover:bg-slate-800 transition">
+                            Ver Recomendaciones de Adaptación
+                        </a>
+                        <button onclick="document.getElementById('screener-form').reset(); document.getElementById('diag-results').classList.add('hidden');" class="text-slate-600 hover:text-slate-900 text-xs font-semibold px-4 py-2.5">
+                            Reiniciar Cuestionario
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="adaptacion" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-primary-600 uppercase tracking-wider">Herramientas Operativas</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-1">
+                    Guías de Adaptación para el Hogar y el Aula
+                </h2>
+                <p class="text-slate-600 mt-2 text-sm">
+                    Estrategias validadas por la red de especialistas de USAER para acondicionar los entornos inmediato del niño.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Home adaptation card -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl font-bold mb-6">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Adecuación del Entorno Familiar</h3>
+                        <p class="text-xs text-slate-600 mb-6 leading-relaxed">
+                            Acondicionamiento físico y organizativo que minimiza el estrés sensorial y promueve la autorregulación durante el estudio en casa:
+                        </p>
+
+                        <div class="space-y-4">
+                            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                                <h4 class="font-bold text-xs text-slate-900 mb-1"><i class="fa-solid fa-sun text-amber-500 mr-2"></i> Control Lumínico y Auditivo</h4>
+                                <p class="text-xs text-slate-600">Sustituir fuentes de luz directa parpadeante y establecer espacios de estudio alejados de televisores o vías ruidosas.</p>
+                            </div>
+
+                            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                                <h4 class="font-bold text-xs text-slate-900 mb-1"><i class="fa-solid fa-layer-group text-amber-500 mr-2"></i> Rincón de Calma (Descompresión)</h4>
+                                <p class="text-xs text-slate-600">Crear un área designada con Cojines, estimulación sensorial pesada o elementos de autorregulación ante crisis o sobrecarga.</p>
+                            </div>
+
+                            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                                <h4 class="font-bold text-xs text-slate-900 mb-1"><i class="fa-solid fa-clock text-amber-500 mr-2"></i> Horarios Visuales Secuenciales</h4>
+                                <p class="text-xs text-slate-600">Uso de pizarrón de rutinas con tarjetas pictogramas para reducir la ansiedad asociada al cambio de actividad.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-slate-100">
+                        <a href="javascript:void(0)" onclick="mostrarNotificacion('Descargando Guía en PDF para el Hogar...')" class="inline-flex items-center gap-2 text-xs font-bold text-amber-700 hover:text-amber-800">
+                            <i class="fa-solid fa-file-pdf"></i> Descargar Guía Práctica para Padres (PDF)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Classroom adaptation card -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl font-bold mb-6">
+                            <i class="fa-solid fa-school"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Adecuación Aulas y Estrategia Docente</h3>
+                        <p class="text-xs text-slate-600 mb-6 leading-relaxed">
+                            Herramientas de rápida implementación para maestros en grupos regulares sin saturación de carga laboral:
+                        </p>
+
+                        <div class="space-y-4">
+                            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                                <h4 class="font-bold text-xs text-slate-900 mb-1"><i class="fa-solid fa-chair text-blue-500 mr-2"></i> Ubicación Estratégica</h4>
+                                <p class="text-xs text-slate-600">Asignar asientos en filas delanteras o laterales centrales, alejados de ventanas y puertas de alto tránsito visual.</p>
+                            </div>
+
+                            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                                <h4 class="font-bold text-xs text-slate-900 mb-1"><i class="fa-solid fa-align-left text-blue-500 mr-2"></i> Exámenes y Tareas Fragmentadas</h4>
+                                <p class="text-xs text-slate-600">Dividir las evaluaciones en entregas cortas de 10 a 15 minutos para prevenir la fatiga cognitiva ejecutiva.</p>
+                            </div>
+
+                            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                                <h4 class="font-bold text-xs text-slate-900 mb-1"><i class="fa-solid fa-person-running text-blue-500 mr-2"></i> Pausas Motoras Reguladas</h4>
+                                <p class="text-xs text-slate-600">Permitir tareas de apoyo en el aula (repartir cuadernos, borrar pizarrón) como descarga cinestésica estructurada.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-slate-100">
+                        <a href="javascript:void(0)" onclick="mostrarNotificacion('Descargando Formato de Adecuación Curricular para Docentes...')" class="inline-flex items-center gap-2 text-xs font-bold text-blue-700 hover:text-blue-800">
+                            <i class="fa-solid fa-file-word"></i> Descargar Formato de Adecuación Curricular
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ods4" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5">
+                    <div class="bg-ods p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+                        <span class="text-xs font-black tracking-widest uppercase opacity-80">Objetivo de Desarrollo Sostenible</span>
+                        <div class="text-7xl font-black mt-2 mb-4">ODS 4</div>
+                        <h3 class="text-2xl font-bold leading-tight">Educación de Calidad e Inclusiva</h3>
+                        <p class="mt-4 text-sm text-white/90 leading-relaxed">
+                            Garantizar una educación inclusiva, equitativa y de calidad y promover oportunidades de aprendizaje durante toda la vida para todos.
+                        </p>
+                        <div class="mt-8 pt-6 border-t border-white/20 flex items-center gap-3">
+                            <i class="fa-solid fa-globe text-2xl"></i>
+                            <span class="text-xs font-medium">Alineado a la Agenda 2030 de las Naciones Unidas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <h2 class="text-3xl font-extrabold tracking-tight">
+                        Contribución Directa de NeuroCrea al ODS 4
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        El proyecto interviene en las metas prioritarias de la ONU reduciendo activamente la brecha de exclusión en la educación primaria pública y privada:
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 rounded bg-ods font-bold text-xs">Meta 4.1</span>
+                                <h4 class="font-bold text-sm text-white">Educación Primaria Gratuita, Equitativa y Eficaz</h4>
+                            </div>
+                            <p class="text-xs text-slate-300 mt-2">Asegura que los niños neurodivergentes completen el nivel primaria con aprendizajes pertinentes al adaptar las metodologías de evaluación.</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 rounded bg-ods font-bold text-xs">Meta 4.5</span>
+                                <h4 class="font-bold text-sm text-white">Eliminación de Disparidades en Grupos Vulnerables</h4>
+                            </div>
+                            <p class="text-xs text-slate-300 mt-2">Evita la discriminación o estigmatización de alumnos con variaciones en su neurodesarrollo dentro del entorno escolar.</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 rounded bg-ods font-bold text-xs">Meta 4.a</span>
+                                <h4 class="font-bold text-sm text-white">Instalaciones e Infraestructura Adaptada</h4>
+                            </div>
+                            <p class="text-xs text-slate-300 mt-2">Provee pautas técnicas para acondicionar aulas y hogares respondiendo a necesidades sensoriales y físicas de los niños.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="canvas" class="py-20 bg-slate-100 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-primary-600 uppercase tracking-wider">Plan Estratégico</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+                    Lienzo de Modelo de Negocios (Business Model Canvas)
+                </h2>
+                <p class="text-slate-600 mt-2 text-sm">
+                    Traducción exacta y desglosada del boceto original de NeuroCrea (Insumo proporcionado por el Equipo 3).
+                </p>
+            </div>
+
+            <!-- Canvas Grid 5 Cols top, 2 Cols bottom -->
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-300">
+                
+                <!-- TOP GRID (5 columns on desktop) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+                    
+                    <!-- 1. Socios Clave -->
+                    <div class="p-5 bg-slate-50/50 canvas-card">
+                        <div class="flex items-center gap-2 font-bold text-slate-900 text-sm mb-3 text-indigo-700">
+                            <i class="fa-solid fa-handshake"></i> Socios Clave
+                        </div>
+                        <ul class="text-xs text-slate-700 space-y-2 list-disc list-inside">
+                            <li>Profesores de <strong>USAER</strong></li>
+                            <li>Terapistas de Lenguaje</li>
+                            <li>Psicólogo General</li>
+                            <li>Estudiantes de <strong>Servicio Social</strong></li>
+                            <li><strong>DIF</strong></li>
+                            <li>Ciudad Niñez</li>
+                            <li><strong>UdeG</strong> (Universidad de Guadalajara)</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. Actividades y Recursos Clave -->
+                    <div class="p-0 flex flex-col divide-y divide-slate-200">
+                        <div class="p-5 flex-1 canvas-card bg-white">
+                            <div class="flex items-center gap-2 font-bold text-slate-900 text-sm mb-2 text-indigo-700">
+                                <i class="fa-solid fa-list-check"></i> Actividades Clave
+                            </div>
+                            <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside">
+                                <li>Identificación oportuna</li>
+                                <li>Diagnóstico preliminar</li>
+                                <li>Herramientas para trabajar con los niños</li>
+                            </ul>
+                        </div>
+                        <div class="p-5 flex-1 canvas-card bg-slate-50/50">
+                            <div class="flex items-center gap-2 font-bold text-slate-900 text-sm mb-2 text-indigo-700">
+                                <i class="fa-solid fa-box"></i> Recursos Clave
+                            </div>
+                            <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside">
+                                <li>Tests y Evaluaciones</li>
+                                <li>Especialistas capacitados</li>
+                                <li>Videos y Artículos PDF</li>
+                                <li>Infraestructura del Sitio Web</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Propuesta de Valor -->
+                    <div class="p-5 bg-indigo-50/40 canvas-card border-indigo-200">
+                        <div class="flex items-center gap-2 font-bold text-indigo-900 text-sm mb-3">
+                            <i class="fa-solid fa-gem text-amber-500"></i> Propuesta de Valor
+                        </div>
+                        <p class="text-xs text-slate-800 leading-relaxed font-medium bg-white p-4 rounded-xl border border-indigo-100 shadow-sm">
+                            Ofrecer <strong>diagnóstico oportuno</strong> a niños neurodivergentes y proveer las <strong>herramientas necesarias para trabajar de la mano con ellos</strong> en sus entornos fundamentales (hogar y escuela).
+                        </p>
+                    </div>
+
+                    <!-- 4. Relación y Canales -->
+                    <div class="p-0 flex flex-col divide-y divide-slate-200">
+                        <div class="p-5 flex-1 canvas-card bg-white">
+                            <div class="flex items-center gap-2 font-bold text-slate-900 text-sm mb-2 text-indigo-700">
+                                <i class="fa-solid fa-comments"></i> Relación con Clientes
+                            </div>
+                            <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside">
+                                <li>Redes Sociales activas</li>
+                                <li>Sitio Web y Blog informativo</li>
+                            </ul>
+                        </div>
+                        <div class="p-5 flex-1 canvas-card bg-slate-50/50">
+                            <div class="flex items-center gap-2 font-bold text-slate-900 text-sm mb-2 text-indigo-700">
+                                <i class="fa-solid fa-bullhorn"></i> Canales (Distribución)
+                            </div>
+                            <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside">
+                                <li>Plataforma / Sitio Web</li>
+                                <li>Gobierno e Instituciones</li>
+                                <li>Directores de Zona Escolar</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 5. Segmentos de Mercado -->
+                    <div class="p-5 bg-slate-50/50 canvas-card">
+                        <div class="flex items-center gap-2 font-bold text-slate-900 text-sm mb-3 text-indigo-700">
+                            <i class="fa-solid fa-users"></i> Segmentos de Mercado
+                        </div>
+                        <ul class="text-xs text-slate-700 space-y-2 list-disc list-inside">
+                            <li>Gobierno e Instituciones Públicas</li>
+                            <li>Empresas dedicadas al sector de Educación Primaria</li>
+                            <li>Padres de Familia de niños neurodivergentes</li>
+                            <li>Escuelas públicas y privadas</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- BOTTOM GRID (Costes e Ingresos) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200 border-t border-slate-300">
+                    
+                    <!-- Estructura de Costes -->
+                    <div class="p-6 bg-red-50/30">
+                        <div class="flex items-center gap-2 font-bold text-red-900 text-sm mb-3">
+                            <i class="fa-solid fa-calculator text-red-600"></i> Estructura de Costes
+                        </div>
+                        <ul class="text-xs text-slate-700 space-y-2 list-disc list-inside">
+                            <li><strong>Pago a especialistas:</strong> Terapeutas, psicólogos y coordinadores de contenido.</li>
+                            <li><strong>Mantenimiento de plataforma:</strong> Hosting, dominio y servidores.</li>
+                            <li><strong>Pago/becas mediante servicio social:</strong> Incentivos para estudiantes colaboradores (UdeG).</li>
+                        </ul>
+                    </div>
+
+                    <!-- Fuentes de Ingreso -->
+                    <div class="p-6 bg-emerald-50/30">
+                        <div class="flex items-center gap-2 font-bold text-emerald-900 text-sm mb-3">
+                            <i class="fa-solid fa-sack-dollar text-emerald-600"></i> Fuentes de Ingreso y Modelo Tarifario
+                        </div>
+                        <ul class="text-xs text-slate-700 space-y-2 list-disc list-inside">
+                            <li><strong>Aportaciones voluntarias:</strong> Familias y donantes individuales.</li>
+                            <li><strong>Donaciones privadas:</strong> Fondos de responsabilidad social corporativa.</li>
+                            <li><strong>Apoyo estatal / Gubernamental:</strong> Subsidios educativos y fondos sociales.</li>
+                            <li><strong>Apoyo de organizaciones civiles:</strong> Becas y subvenciones de fundaciones.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Operational Feasibility Calculator -->
+            <div class="mt-12 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+                <h3 class="font-bold text-slate-900 text-lg mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-chart-bar text-primary-600"></i> Simulador Simplificado de Viabilidad Social
+                </h3>
+                <p class="text-xs text-slate-600 mb-6">Calcula la proyección del costo por alumno atendido al año gracias a la alianza con Servicio Social UdeG y DIF:</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Alumnos Beneficiados Proyectados:</label>
+                        <input type="number" id="num-alumnos" value="1000" min="100" max="10000" step="100" oninput="calcularViabilidad()" class="w-full p-2.5 border border-slate-300 rounded-lg text-sm font-semibold">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Presupuesto Operativo Mensual ($ MXN):</label>
+                        <input type="number" id="gasto-mensual" value="18500" min="5000" max="100000" step="1000" oninput="calcularViabilidad()" class="w-full p-2.5 border border-slate-300 rounded-lg text-sm font-semibold">
+                    </div>
+
+                    <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100 text-center">
+                        <span class="text-xs text-slate-500 font-semibold block">Costo Estimado por Alumno Atendido:</span>
+                        <span id="costo-alumno" class="text-2xl font-black text-primary-700">$18.50 MXN / mes</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="equipo" class="py-20 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-primary-600 uppercase tracking-wider">Créditos del Proyecto</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-1">
+                    Equipo 3 & Red de Voluntariado
+                </h2>
+                <p class="text-slate-600 mt-2 text-sm">
+                    Estudiantes y coordinadores dedicados al desarrollo del ecosistema NeuroCrea.
+                </p>
+            </div>
+
+            <!-- Team Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center mb-16">
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-lg mx-auto mb-3">D</div>
+                    <h4 class="font-bold text-slate-900 text-sm">Diana</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">Coordinación</p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-lg mx-auto mb-3">Á</div>
+                    <h4 class="font-bold text-slate-900 text-sm">Ángel</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">Desarrollo Web</p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg mx-auto mb-3">C</div>
+                    <h4 class="font-bold text-slate-900 text-sm">Carlos</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">Contenido Técnico</p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg mx-auto mb-3">E</div>
+                    <h4 class="font-bold text-slate-900 text-sm">Ernesto</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">Investigación</p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-lg mx-auto mb-3">A</div>
+                    <h4 class="font-bold text-slate-900 text-sm">Alejandra</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">Pedagogía USAER</p>
+                </div>
+            </div>
+
+            <!-- Volunteer Contact Form -->
+            <div class="max-w-2xl mx-auto bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-md">
+                <h3 class="font-bold text-slate-900 text-lg mb-2 text-center">
+                    Registro de Voluntariado & Servicio Social UdeG
+                </h3>
+                <p class="text-xs text-slate-600 text-center mb-6">
+                    Súmate en las áreas de producción de cámaras, edición audiovisual, filtro de contenido técnico o apoyo en escuelas.
+                </p>
+
+                <form onsubmit="event.preventDefault(); registrarVoluntario();" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Nombre Completo:</label>
+                        <input type="text" id="vol-nombre" required placeholder="Ej. Ana María Gómez" class="w-full p-2.5 rounded-lg border border-slate-300 text-sm">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Correo Electrónico:</label>
+                            <input type="email" id="vol-correo" required placeholder="correo@ejemplo.com" class="w-full p-2.5 rounded-lg border border-slate-300 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Perfil / Rol:</label>
+                            <select id="vol-rol" class="w-full p-2.5 rounded-lg border border-slate-300 text-sm bg-white">
+                                <option value="camara">Cámaras y Grabación</option>
+                                <option value="edicion">Edición de Video</option>
+                                <option value="pedagogia">Especialista / Psicología</option>
+                                <option value="servicio">Servicio Social UdeG</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-sm transition shadow-md">
+                        Enviar Solicitud
+                    </button>
+                </form>
+
+                <div id="vol-mensaje" class="hidden mt-4 p-4 rounded-xl bg-emerald-100 text-emerald-800 text-xs font-semibold text-center">
+                    ¡Gracias por sumarte! Tu solicitud de voluntariado ha sido registrada. Nos pondremos en contacto pronto.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-auto text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-primary-600 text-white flex items-center justify-center font-bold text-sm">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <span class="text-white font-bold text-lg tracking-tight">Neuro<span class="text-primary-500">Crea</span></span>
+                </div>
+
+                <div class="text-center md:text-left">
+                    <p>Proyecto para la materia/módulo de ODS 4: Educación de Calidad.</p>
+                    <p class="text-slate-500 mt-1">&copy; 2026 Equipo 3 • Diana, Ángel, Carlos, Ernesto, Alejandra.</p>
+                </div>
+
+                <div class="flex space-x-4 text-base">
+                    <a href="#inicio" class="hover:text-white transition"><i class="fa-solid fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile navigation menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Screener score calculator logic
+        function calcularDiagnostico() {
+            const q1 = parseInt(document.getElementById('q1').value) || 3;
+            const q2 = parseInt(document.getElementById('q2').value) || 3;
+            const q3 = parseInt(document.getElementById('q3').value) || 3;
+            const q4 = parseInt(document.getElementById('q4').value) || 3;
+            const q5 = parseInt(document.getElementById('q5').value) || 3;
+
+            const totalScore = q1 + q2 + q3 + q4 + q5;
+            const role = document.getElementById('user-role-select').value;
+
+            const resultsContainer = document.getElementById('diag-results');
+            const scoreBadge = document.getElementById('score-badge');
+            const resultText = document.getElementById('result-text');
+
+            scoreBadge.innerText = `Puntaje: ${totalScore}/25`;
+            resultsContainer.classList.remove('hidden');
+
+            let htmlContent = "";
+
+            if (totalScore >= 18) {
+                htmlContent = `
+                    <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">
+                        <p class="font-bold mb-1">🟢 Indicadores Prominentes de Perfil Neurodivergente (Procesamiento Atípico)</p>
+                        <p class="text-xs leading-relaxed">El estudiante muestra patrones significativos que requieren adecuaciones de entorno y seguimiento técnico.</p>
+                    </div>
+                    <div class="space-y-1.5 text-xs text-slate-700">
+                        <p class="font-bold text-slate-900">Recomendaciones inmediatas (${role === 'padre' ? 'Para el Hogar' : 'Para el Aula'}):</p>
+                        <p>• Implementar descansos sensoriales breves cada 20 minutos de trabajo.</p>
+                        <p>• Reducir la carga de copia escrita utilizando resúmenes visuales o impresos.</p>
+                        <p>• Compartir este reporte con el profesional de USAER o psicólogo escolar.</p>
+                    </div>
+                `;
+            } else if (totalScore >= 12) {
+                htmlContent = `
+                    <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900">
+                        <p class="font-bold mb-1">🟡 Indicadores Moderados de Necesidad de Adaptación Pedagógica</p>
+                        <p class="text-xs leading-relaxed">Presenta áreas de oportunidad para optimizar la atención mediante rutinas estructuradas.</p>
+                    </div>
+                    <div class="space-y-1.5 text-xs text-slate-700">
+                        <p class="font-bold text-slate-900">Recomendaciones sugeridas:</p>
+                        <p>• Aplicar apoyos visuales y pizarrón de pendientes paso a paso.</p>
+                        <p>• Fomentar técnicas de organización del tiempo como temporizadores visuales.</p>
+                    </div>
+                `;
+            } else {
+                htmlContent = `
+                    <div class="p-4 rounded-xl bg-blue-50 border border-blue-200 text-blue-900">
+                        <p class="font-bold mb-1">🔵 Perfil Estándar / Preferencia por Aprendizaje Visual</p>
+                        <p class="text-xs leading-relaxed">No se observan indicadores agudos de sobrecarga sensorial o desatención atípica.</p>
+                    </div>
+                    <div class="space-y-1.5 text-xs text-slate-700">
+                        <p class="font-bold text-slate-900">Recomendación:</p>
+                        <p>• Mantener una estructura clara de tareas y espacios iluminados adecuadamente.</p>
+                    </div>
+                `;
+            }
+
+            resultText.innerHTML = htmlContent;
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Calculator logic for financial/social feasibility
+        function calcularViabilidad() {
+            const numAlumnos = parseFloat(document.getElementById('num-alumnos').value) || 1;
+            const gastoMensual = parseFloat(document.getElementById('gasto-mensual').value) || 0;
+
+            const costoPorAlumno = gastoMensual / (numAlumnos > 0 ? numAlumnos : 1);
+
+            document.getElementById('costo-alumno').innerText = `$${costoPorAlumno.toFixed(2)} MXN / mes`;
+        }
+
+        // Volunteer registration message toggle
+        function registrarVoluntario() {
+            const nombre = document.getElementById('vol-nombre').value;
+            if(nombre) {
+                document.getElementById('vol-mensaje').classList.remove('hidden');
+            }
+        }
+
+        // UI Notification helper
+        function mostrarNotificacion(mensaje) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl text-xs font-semibold shadow-2xl z-50 transition-all';
+            toast.innerText = mensaje;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
